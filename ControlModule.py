@@ -68,10 +68,10 @@ class ControlModule:
     
         """ Function that computes one control-iteration """
         ### TO BE COMPLETED BY THE STUDENTS ###
-    solver = mdptoolbox.mdp.ValueIteration(P,R,gamma)
-    solver.run()
-    policy = np.array(solver.policy) 
-    return np.int32(policy[state]) 
+        solver = mdptoolbox.mdp.ValueIteration(P,R,gamma)
+        solver.run()
+        policy = np.array(solver.policy) 
+        return np.int32(policy[state]) 
 
     @staticmethod
     def control_loop(demand: np.ndarray, 
@@ -98,22 +98,20 @@ class ControlModule:
             2:[0,1,2]
         } 
         for t in range(demand.shape[0]):
-        #R must be recalculated for each demand point
-        R = ControlModule.generate_R(demand=demand[t], n_states=n_states) 
-        action = ControlModule.control_iteration( 
-            P=P, 
-            R=R,
-            state=current_state, 
-            gamma=gamma
-        )
-        selected_movement = np.random.choice(
-            movements[int(action)],
-            p=probs[int(action)]
-        ) 
-                         
-        current_state = np.clip(current_state + selected_movement, 0, n_states - 1)
-        response[t] = current_state / (n_states - 1) #normalizing level to 0-1 range
-return response 
+            R = ControlModule.generate_R(demand=demand[t], n_states=n_states) 
+            action = ControlModule.control_iteration( 
+                P=P, 
+                R=R,
+                state=current_state, 
+                gamma=gamma
+                )
+            selected_movement = np.random.choice(
+                movements[int(action)],
+                p=probs[int(action)]
+                ) 
+            current_state = np.clip(current_state + selected_movement, 0, n_states - 1)
+            response[t] = current_state / (n_states - 1) #normalizing level to 0-1 range
+        return response 
                     
                          
                          
