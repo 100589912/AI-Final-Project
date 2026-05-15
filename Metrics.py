@@ -33,11 +33,8 @@ def Corr(y_true: np.ndarray, y_pred: np.ndarray) -> np.float64:
     """ Implementation of the Pearson's Correlation Coefficient """
     ### TO BE COMPLETED BY THE STUDENTS ###
     
-    yt = y_true - np.mean(y_true)
-    yp = y_pred - np.mean(y_pred)
-    cov = np.sum(yt * yp)
-    d = np.sqrt(np.sum(yt**2) * np.sum(yp**2))
-    if d == 0:
-        return 0.0
-    corr = cov / d
-    return corr
+    if np.std(y_true) == 0 or np.std(y_pred) == 0:
+        return np.float64(0.0)
+    #Returns the correlation matrix, we take top right value
+    correlation_matrix = np.corrcoef(y_true, y_pred)
+    return np.float64(correlation_matrix[0,1])
