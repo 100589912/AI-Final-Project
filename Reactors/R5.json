@@ -1,0 +1,12 @@
+{
+  "model": "RBMK-CHAOS",
+  "effective_section": 21.0,
+  "neutron_flux": 7e13,
+  "core_volume": 1.1e7,
+  "fision_energy": 3.4e-11,
+  "probabilities": {
+    "decrease": [0.45, 0.30, 0.25],
+    "maintain": [0.30, 0.40, 0.30],
+    "increase": [0.25, 0.30, 0.45]
+  }
+}

@@ -57,6 +57,7 @@ def main() -> None:
     plot_reactor_as_radar(probs=probs)
     
     # Generate a random power demand
+
     demand = generate_demand(n_samples=512)
 
     # Define the number of MDP's states, actions and the discount factor (gamma)

@@ -37,7 +37,7 @@ class ControlModule:
         """ Function that generates the rewards (costs) matrix """
         ### TO BE COMPLETED BY THE STUDENTS ###
     
-        R = np.zeros((3, n_states))
+        R = np.zeros((n_states,3))
     
         for s in range(n_states):
             level = s / 100.0           
@@ -57,7 +57,7 @@ class ControlModule:
                     cost = base_cost * 2
                 else:
                     cost = base_cost
-                R[a, s] = -cost
+                R[s,a] = -cost
         return R
 
     @staticmethod
